@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Python for Dummies',
+    date: 'Jan 13th, 2020',
+    firstParagraph: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, minima quia. Officiis, natus animi impedit aliquam culpa reiciendis a nobis ipsa deserunt molestiae excepturi quidem nostrum earum amet doloribus repudiandae!`,
+    secondParagraph: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, minima quia. Officiis, natus animi impedit aliquam culpa reiciendis a nobis ipsa deserunt molestiae excepturi quidem nostrum earum amet doloribus repudiandae!`,
+    thirdParagraph: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, minima quia. Officiis, natus animi impedit aliquam culpa reiciendis a nobis ipsa deserunt molestiae excepturi quidem nostrum earum amet doloribus repudiandae!`
+
+    
   }
 ];
 
@@ -112,3 +121,53 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+// article creator
+const createArticle = (dataObject) => {
+
+  //create elements
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  //structure
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(expandButton);
+
+
+  //classes and style
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  //add content
+  title.textContent = dataObject.title;
+  date.textContent = dataObject.date;
+  p1.textContent = dataObject.firstParagraph;
+  p2.textContent = dataObject.secondParagraph;
+  p3.textContent = dataObject.thirdParagraph;
+  expandButton.textContent = '\u25bc';
+
+  
+
+  //event listeners
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+
+data.forEach((content) => {
+  articles.appendChild(createArticle(content));
+})
